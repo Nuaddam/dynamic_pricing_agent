@@ -1,10 +1,9 @@
-from langchain_google_vertexai import ChatVertexAI
+from langchain_google_genai import GoogleGenerativeAI
 from app.core.config import settings
 
 def get_llm():
-    return ChatVertexAI(
+    return GoogleGenerativeAI(
         model="gemini-2.5-flash",
-        project=settings.GOOGLE_PROJECT,
-        location=settings.GOOGLE_LOCATION,
-        temperature=0.2
+        google_api_key=settings.GOOGLE_API_KEY,
+        temperature=0.7
     )

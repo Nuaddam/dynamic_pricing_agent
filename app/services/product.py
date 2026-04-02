@@ -1,16 +1,28 @@
-from app.db.postgres import get_connection
+import asyncpg
+from app.core.config import settings
 
 
-async def get_products_by_ids(product_ids: list[str]):
+async def get_connection():
+    return await asyncpg.connect(
+        user=settings.DB_USER,
+        password=settings.DB_PASSWORD,
+        database=settings.DB_NAME,
+        host=settings.DB_HOST,
+        port=settings.DB_PORT,
+    )
+
+
+async def fetch_prices(ids):
     conn = await get_connection()
+    rows = await conn.fetch(
+        "SELECT id, price FROM products WHERE id = ANY($1)",
+        ids
+    )
 
-    query = """
-    SELECT id, name, price
-    FROM products
-    WHERE id = ANY($1)
-    """
-
-    rows = await conn.fetch(query, product_ids)
-    await conn.close()
-
-    return [dict(r) for r in rows]
+    return [
+        {
+            "id": str(r["id"]),
+            "price": float(r["price"])  # 🔥 convert ตรงนี้
+        }
+        for r in rows
+    ]

@@ -1,9 +1,3 @@
-# from pydantic import BaseModel, Field
-
-# class PriceResponse(BaseModel):
-#     new_price: float = Field(..., description="Final optimized price")
-#     logic: str = Field(..., description="Explanation of pricing decision")
-
 from pydantic import BaseModel
 
 
@@ -14,6 +8,8 @@ class PriceRequest(BaseModel):
 
 class PriceResponse(BaseModel):
     base_price: float
+    campaign_price: float
     final_price: float
     sentiment: str
+    confidence: float
     reasoning: str

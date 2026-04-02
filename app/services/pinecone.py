@@ -5,12 +5,12 @@ from app.core.config import settings
 pc = Pinecone(api_key=settings.PINECONE_API_KEY)
 
 # connect index
-index = pc.Index(host=settings.PINECONE_INDEX_HOST)
+index = pc.Index("products",host=settings.PINECONE_INDEX_HOST)
 
 
 def search_similar_products(product_text: str, top_k: int = 7):
     response = index.search(
-        namespace="products",
+        namespace="hyper-personalization-ads",
         query={
             "inputs": {"text": product_text},
             "top_k": top_k
@@ -18,9 +18,6 @@ def search_similar_products(product_text: str, top_k: int = 7):
     )
 
     return [
-        {
-            "id": m["_id"],
-            "score": m["_score"]
-        }
+        m["_id"]
         for m in response["result"]["hits"]
     ]

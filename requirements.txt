@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+
+pydantic
+pydantic-settings
+
+langchain
+langchain-core
+langchain-community
+langchain-google-community
+langchain-google-vertexai
+
+pinecone
+
+asyncpg
+
+python-dotenv

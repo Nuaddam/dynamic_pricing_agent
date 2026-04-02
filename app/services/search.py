@@ -1,10 +1,23 @@
-from langchain_google_community import GoogleSearchResults
+from tavily import TavilyClient
 from app.core.config import settings
 
-search = GoogleSearchResults(api_key=settings.GOOGLE_API_KEY)
+client = TavilyClient(api_key=settings.TAVILY_API_KEY)
 
 
-def get_market_news(product_name: str):
-    query = f"{product_name} price trend news"
+def search_market(query: str):
+    res = client.search(
+        query=f"{query} price trend demand news ecommerce",
+        search_depth="advanced",
+        max_results=5
+    )
 
-    return search.run(query)
+    formatted = []
+
+    for r in res["results"]:
+        formatted.append(f"""
+        TITLE: {r['title']}
+        CONTENT: {r['content']}
+        SCORE: {r['score']}
+        """)
+
+    return "\n\n".join(formatted)

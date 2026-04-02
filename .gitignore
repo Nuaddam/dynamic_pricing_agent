@@ -2,3 +2,4 @@
 credential/
 .env
 test_pinecone.py
+*.pyc
