@@ -1,0 +1,20 @@
+[tool.ruff]
+lint.extend-select = ["I", "N"]
+exclude = [".venv", "migrations"]
+
+[project]
+name = "dynamic-pricing-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "asyncpg>=0.31.0",
+    "google-adk>=1.31.1",
+    "gunicorn>=25.3.0",
+    "langchain-google-genai>=4.2.2",
+    "langgraph>=1.1.9",
+    "pinecone>=8.1.2",
+    "tavily-python>=0.7.23",
+    "uvicorn>=0.46.0",
+]
