@@ -1,10 +1,8 @@
 from tavily import TavilyClient
 from app.core.config import settings
 
-client = TavilyClient(api_key=settings.TAVILY_API_KEY)
-
-
 def search_market(query: str):
+    client = TavilyClient(api_key=settings.TAVILY_API_KEY)
     res = client.search(
         query=f"{query} price trend demand news ecommerce",
         search_depth="advanced",
