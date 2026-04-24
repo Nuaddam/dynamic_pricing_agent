@@ -2,6 +2,9 @@ from typing import TypedDict, List
 
 
 class PricingState(TypedDict):
+    product_id: str
+    product_details: dict
+    
     product_name: str
     campaign: str
 
