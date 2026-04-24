@@ -30,7 +30,7 @@ async def fetch_prices(ids):
 async def fetch_product_info(id):
     conn = await get_connection()
     rows = await conn.fetch(
-        "SELECT id, name, description FROM products WHERE id = $1",
+        "SELECT id, name, description, price FROM products WHERE id = $1",
         id
     )
 
