@@ -11,6 +11,7 @@ requires-python = ">=3.12"
 dependencies = [
     "asyncpg>=0.31.0",
     "google-adk>=1.31.1",
+    "google-genai>=1.73.1",
     "gunicorn>=25.3.0",
     "langchain-google-genai>=4.2.2",
     "langgraph>=1.1.9",

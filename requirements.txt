@@ -9,6 +9,7 @@ langchain-core
 langchain-community
 langchain-google-community
 langchain-google-vertexai
+google-genai
 
 pinecone
 
