@@ -9,13 +9,9 @@ def search_market(query: str):
         max_results=5
     )
 
-    formatted = []
+    contents = []
 
     for r in res["results"]:
-        formatted.append(f"""
-        TITLE: {r['title']}
-        CONTENT: {r['content']}
-        SCORE: {r['score']}
-        """)
+        contents.append(f"""TITLE: {r['title']}\nCONTENT: {r['content']}\nSCORE: {r['score']}""")
 
-    return "\n\n".join(formatted)
+    return "\n\n".join(contents)
