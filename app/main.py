@@ -15,7 +15,8 @@ async def price(req: PriceRequest):
     start = datetime.now()
     result = await graph.ainvoke({
         "product_name": req.product_name,
-        "campaign": req.campaign_code
+        "campaign": req.campaign_code,
+        "product_id": req.product_id,
     })
     end = datetime.now()
     print("Total processing time:", (end - start).total_seconds(), "seconds")
