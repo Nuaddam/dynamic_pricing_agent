@@ -1,5 +1,7 @@
 from langchain_google_genai import GoogleGenerativeAI
+
 from app.core.config import settings
+
 
 def get_llm():
     return GoogleGenerativeAI(

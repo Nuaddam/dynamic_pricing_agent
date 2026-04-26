@@ -1,4 +1,5 @@
 from pinecone import Pinecone
+
 from app.core.config import settings
 
 # init client

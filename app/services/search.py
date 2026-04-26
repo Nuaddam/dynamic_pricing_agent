@@ -1,5 +1,7 @@
 from tavily import TavilyClient
+
 from app.core.config import settings
+
 
 def search_market(query: str):
     client = TavilyClient(api_key=settings.TAVILY_API_KEY)

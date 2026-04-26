@@ -1,6 +1,8 @@
-from pydantic import BaseModel
-from app.utils.gemini import generate_content
 from google.genai import types
+from pydantic import BaseModel
+
+from app.utils.gemini import generate_content
+
 
 class AdjustResponse(BaseModel):
     final_price: float

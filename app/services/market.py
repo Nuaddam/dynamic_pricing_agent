@@ -1,5 +1,7 @@
 import json
-from langchain_core.messages import SystemMessage, HumanMessage
+
+from langchain_core.messages import HumanMessage, SystemMessage
+
 from app.core.llm import get_llm
 
 llm = get_llm()

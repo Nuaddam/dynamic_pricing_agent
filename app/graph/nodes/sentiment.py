@@ -1,5 +1,6 @@
-from app.utils.gemini import generate_content
 from google.genai import types
+
+from app.utils.gemini import generate_content
 
 SYSTEM_PROMPT = """
 ROLE: You are an experienced Marketing Data Scientist. You have a background in consumer sentiment analysis and market trend forecasting. Your personality is analytical, objective, and precise.

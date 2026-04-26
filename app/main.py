@@ -1,8 +1,10 @@
-from fastapi import FastAPI
-from app.models.pricing_models import PriceRequest, PriceResponse
-from app.graph.graph import graph
-from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.graph.graph import graph
+from app.models.pricing_models import PriceRequest, PriceResponse
 
 app = FastAPI()
 
