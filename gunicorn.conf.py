@@ -20,7 +20,7 @@ wsgi_app = "app.main:app"
 timeout = 0
 preload = True
 worker_class = "uvicorn.workers.UvicornWorker"
-_port = os.environ.get("PORT", "8005")
+_port = os.environ.get("PORT", "8000")
 bind = f"[::]:{_port}"
 if os.getenv("ENV", "dev") == "dev":
     workers = 1
