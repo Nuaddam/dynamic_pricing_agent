@@ -1,5 +1,6 @@
 import re
 
+
 def extract_prices(text: str):
     prices = re.findall(r"\d+\.?\d*", text)
     return [float(p) for p in prices]

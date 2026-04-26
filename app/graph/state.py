@@ -1,7 +1,10 @@
-from typing import TypedDict, List
+from typing import List, TypedDict
 
 
 class PricingState(TypedDict):
+    product_id: str
+    product_details: dict
+    
     product_name: str
     campaign: str
 
