@@ -5,11 +5,11 @@ from google.genai import types
 
 
 def generate_content(
-    parts: List[types.Part], system_instruction: Optional[str] = None, response_schema: Optional[types.SchemaUnion] = None
+    parts: List[types.Part], system_instruction: Optional[str] = None, response_schema: Optional[types.SchemaUnion] = None, model_name: str = "gemini-2.5-flash"
 ) -> types.GenerateContentResponse:
     client = genai.Client()
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model=model_name,
         contents=types.Content(
             parts=parts,
             role="user",

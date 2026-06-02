@@ -4,6 +4,8 @@ from typing import List, TypedDict
 class PricingState(TypedDict):
     product_id: str
     product_details: dict
+    model_name: str
+    campaign_matrix: dict | None
     
     product_name: str
     campaign: str

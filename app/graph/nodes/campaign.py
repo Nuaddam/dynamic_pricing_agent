@@ -44,9 +44,10 @@ def apply_campaign_rule_v2(state: dict) -> dict:
             "strongly negative": 0.75, "negative": 0.80, "neutral": 0.85, "positive": 0.90, "strongly positive": 0.95
         }
     }
+    campaign_matrix = state.get("campaign_matrix", {}) or {}
     
-    # Lookup resolution sequence
-    campaign_rules = PRICING_MATRIX.get(campaign, {})
+    # Lookup resolution sequence with campaign-level override: campaign_matrix > PRICING_MATRIX
+    campaign_rules = {**PRICING_MATRIX.get(campaign, {}), **campaign_matrix.get(campaign, {})}
     
     # Fallback cascade: if sentiment string is mangled, fallback to 'neutral'
     # If campaign doesn't exist, fallback to 1.0 multiplier

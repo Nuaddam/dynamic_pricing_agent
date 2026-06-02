@@ -9,6 +9,7 @@ class AdjustResponse(BaseModel):
     confidence: float
     reasoning: str
 
+
 SYSTEM_PROMPT = """
 ROLE: You are an experienced Revenue Management Specialist. You have a background in dynamic pricing algorithms and consumer behavior analytics. Your personality is strategic and data-driven.
 
@@ -32,21 +33,34 @@ FORMAT: Present your response as a JSON object with the following structure:
 }
 """
 
+
 async def llm_adjust_price(state):
     product = state["product_details"]
+    model_name = state["model_name"]
     parts = [
-		types.Part.from_text(text="Optimizes product pricing dynamically based on consumer sentiment and campaign performance data."),
-		types.Part.from_text(text=f"PRODUCT NAME: {product['name']}\nDESCRIPTION: {product['description']}\nPRICE: {product['price']}"),
-		types.Part.from_text(text=f"Current campaign price: {state['campaign_price']}\nMarket sentiment: {state['sentiment']}"),
-	]
-    response = generate_content(parts, system_instruction=SYSTEM_PROMPT, response_schema=AdjustResponse.model_json_schema())
+        types.Part.from_text(
+            text="Optimizes product pricing dynamically based on consumer sentiment and campaign performance data."
+        ),
+        types.Part.from_text(
+            text=f"PRODUCT NAME: {product['name']}\nDESCRIPTION: {product['description']}\nPRICE: {product['price']}"
+        ),
+        types.Part.from_text(
+            text=f"Current campaign price: {state['campaign_price']}\nMarket sentiment: {state['sentiment']}"
+        ),
+    ]
+    response = generate_content(
+        parts,
+        system_instruction=SYSTEM_PROMPT,
+        response_schema=AdjustResponse.model_json_schema(),
+        model_name=model_name,
+    )
     try:
         adjust_result = AdjustResponse.model_validate_json(response.text)
         return adjust_result.model_dump()
     except Exception as e:
         print(f"Error parsing LLM response: {e}")
     return {
-		"final_price": state["campaign_price"],
-		"confidence": 0.0,
-		"reasoning": "Failed to parse LLM response, returning original campaign price."
-	}
+        "final_price": state["campaign_price"],
+        "confidence": 0.0,
+        "reasoning": "Failed to parse LLM response, returning original campaign price.",
+    }

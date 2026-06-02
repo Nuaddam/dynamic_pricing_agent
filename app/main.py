@@ -19,6 +19,8 @@ async def price(req: PriceRequest):
         "product_name": req.product_name,
         "campaign": req.campaign_code,
         "product_id": req.product_id,
+        "model_name": req.model_name,
+        "campaign_matrix": req.campaign_matrix
     })
     end = datetime.now()
     print("Total processing time:", (end - start).total_seconds(), "seconds")

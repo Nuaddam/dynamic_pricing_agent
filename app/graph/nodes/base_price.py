@@ -36,5 +36,6 @@ async def compute_base_price(state):
         base_price = statistics.median(price_values)
         
     print(f"Computed base price: {base_price}, based on prices: {price_values} and product price: {product['price'] if product else 'N/A'}")
+    print(f"Filtered prices (after removing outliers): {filtered_prices}")
 
     return {"base_price": base_price}
