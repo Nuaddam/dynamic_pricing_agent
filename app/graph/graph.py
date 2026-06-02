@@ -2,7 +2,7 @@ from langgraph.graph import END, StateGraph
 
 from app.graph.nodes.adjust import llm_adjust_price
 from app.graph.nodes.base_price import compute_base_price
-from app.graph.nodes.campaign import apply_campaign_rule
+from app.graph.nodes.campaign import apply_campaign_rule_v2
 from app.graph.nodes.db import get_product_details, get_product_prices
 from app.graph.nodes.pinecone import find_similar_products
 from app.graph.nodes.search import get_market_data
@@ -17,7 +17,7 @@ builder.add_node("db_details", get_product_details)
 builder.add_node("base", compute_base_price)
 builder.add_node("search", get_market_data)
 builder.add_node("sentiment", analyze_sentiment)
-builder.add_node("campaign", apply_campaign_rule)
+builder.add_node("campaign", apply_campaign_rule_v2)
 builder.add_node("adjust", llm_adjust_price)
 
 builder.set_entry_point("pinecone")
